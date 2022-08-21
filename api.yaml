@@ -1,0 +1,161 @@
+swagger: "2.0"
+info:
+  title: Naijafarmers Api
+  description: The api documentation
+  version: 1.0
+  contact:
+    email: segundev24@gmail.com
+  license:
+    name: Apache 2.0
+    url: "https://apache.org/"
+  servers:
+    -url: "http://localhost:4000/"
+    description: This is my local server
+    -url: "https://namecheap.com"
+    description: The company server
+
+schemes: [http,https]
+
+paths:
+ #string test
+  /string:
+    get:
+      summary: Returns string
+      description: We get the response from sent requests
+      responses: 
+        200:
+          description: Success
+          schema:
+            type: string
+            example: "The string data"
+        400:
+          description: An error occured
+        500:
+          description: Internal server error
+#object test
+  /user:
+    get:
+      summary: Returns an object
+      description: We get the response from sent user requests
+      responses: 
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+        400:
+          description: An error occured
+#returning array of users
+  /users:
+    get:
+      summary: Returns an array
+      description: We get the response from sent user requests
+      responses: 
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+        400:
+          description: An error occured
+#returning specific id
+  /users/{userId}:
+    get:
+      summary: Returns a specific id
+      description: We get the response from sent user requests
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          type: integer
+          schema:
+            type: integer
+      responses: 
+        200:
+          description: Success
+        400:
+          description: An error occured
+
+#post user data
+  /create:
+    post:
+      summary: Post data
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+      - in: body
+        name: user
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+      responses:
+        200:
+          description: success
+
+# Schema with Definition
+  /create-user:
+    post:
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+      - in: body
+        name: user
+        schema:
+          $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: success
+
+#Query
+  /usersQuery:
+    get:
+      parameters:
+      - in: query
+        name: id
+        type: integer
+      responses:
+        200:
+          description: Success
+
+#File Upload
+  /upload:
+    post:
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: formData
+          name: file
+          type: file
+          required: true
+      responses:
+        200:
+          description: success
+
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string

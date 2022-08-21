@@ -1,0 +1,25 @@
+{
+  "name": "naijafarmers",
+  "version": "1.0.0",
+  "description": "backend for naijafarmers",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "lowdb": "^3.0.0",
+    "morgan": "^1.10.0",
+    "nano": "^10.0.0",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
